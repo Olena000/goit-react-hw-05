@@ -11,3 +11,8 @@ export const FetchMovies = async () => {
   const response = await axios.get("/trending/movie/day");
   return response.data.results;
 };
+
+export const FetchMoviesById = async (id) => {
+  const response = await axios.get(`/movie/${id}`);
+  return response.data;
+};
