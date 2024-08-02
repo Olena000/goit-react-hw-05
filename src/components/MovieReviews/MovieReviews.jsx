@@ -11,6 +11,7 @@ export default function MovieReviews() {
   }, [params.movieId]);
   return (
     <div>
+      {reviews.length === 0 && <p>We don`t have any reviews for this movie</p>}
       <ul>
         {reviews.map(({ author, created_at: id, content }) => (
           <li key={id}>
