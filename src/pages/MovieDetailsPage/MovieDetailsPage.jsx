@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import { FetchMoviesById } from "../../services/api";
 
 const baseImgUrl = "https://image.tmdb.org/t/p/w500";
@@ -19,22 +19,29 @@ export default function MovieDetailsPage() {
     <div>
       <div>
         {movie.poster_path && (
-          <img src={`${baseImgUrl}${movie.poster_path}`} alt={movie.title} />
+          <img
+            src={`${baseImgUrl}${movie.poster_path}`}
+            alt={movie.title}
+            width={250}
+          />
         )}
       </div>
       <div>
         <h1>{movie.original_title}</h1>
+        <p>
+          Genres:{" "}
+          {movie.genres && movie.genres.map((genre) => genre.name).join(", ")}
+        </p>
+        <p>Overview: {movie.overview}</p>
         <p>Release date: {movie.release_date} </p>
         <p>Votes: {movie.vote_count}</p>
-        <p>Overview: {movie.overview}</p>
-        <p>
-          {" "}
-          Genres:{" "}
-          {movie.genres.map((genre) => (
-            <span key={genre.id}>{genre.name} </span>
-          ))}
-        </p>
       </div>
+      <div>
+        <h3>Additional information</h3>
+        <NavLink to="cast">Cast</NavLink>
+        <NavLink to="reviews">Reviews</NavLink>
+      </div>
+      <Outlet />
     </div>
   );
 }

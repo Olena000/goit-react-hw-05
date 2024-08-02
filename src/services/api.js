@@ -16,3 +16,14 @@ export const FetchMoviesById = async (id) => {
   const response = await axios.get(`/movie/${id}`);
   return response.data;
 };
+
+export const FetchCastById = async (id) => {
+  const response = await axios.get(`/movie/${id}/credits`);
+  return response.data.cast;
+};
+
+export const FetchReviewsById = async (id) => {
+  const response = await axios.get(`/movie/${id}/reviews`);
+  console.log(response.data.results);
+  return response.data.results;
+};
