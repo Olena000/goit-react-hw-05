@@ -1,14 +1,10 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
 export default function SearchBar({ onSubmit }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("query") || "");
+  const [query, setQuery] = useState("");
 
   const handleInputChange = (e) => {
-    const value = e.target.value;
-    setQuery(value);
-    setSearchParams({ query: value });
+    setQuery(e.target.value);
   };
 
   const handleSubmit = (e) => {

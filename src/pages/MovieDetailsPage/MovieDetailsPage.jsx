@@ -1,5 +1,11 @@
-import { useEffect, useState } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { FetchMoviesById } from "../../services/api";
 
 const baseImgUrl = "https://image.tmdb.org/t/p/w500";
@@ -7,6 +13,9 @@ const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 export default function MovieDetailsPage() {
   const params = useParams();
   const [movie, setMovie] = useState(null);
+  const location = useLocation();
+  const goBackRef = useRef(location?.state || "/movies");
+
   useEffect(() => {
     FetchMoviesById(params.movieId).then((data) => setMovie(data));
   }, [params.movieId]);
@@ -17,6 +26,7 @@ export default function MovieDetailsPage() {
 
   return (
     <div>
+      <Link to={goBackRef.current}>Go back</Link>
       <div>
         {movie.poster_path && (
           <img

@@ -24,7 +24,6 @@ export const FetchCastById = async (id) => {
 
 export const FetchReviewsById = async (id) => {
   const response = await axios.get(`/movie/${id}/reviews`);
-  console.log(response.data.results);
   return response.data.results;
 };
 
@@ -34,6 +33,5 @@ export const FetchSearchMovies = async (query) => {
       query,
     },
   });
-  console.log(response.data.results);
   return response.data.results;
 };
