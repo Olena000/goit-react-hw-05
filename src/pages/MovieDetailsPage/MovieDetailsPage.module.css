@@ -1,25 +1,21 @@
-.header {
-  display: flex;
-  padding: 20px;
-  font-size: 24px;
-  font-weight: 700;
-  color: white;
+.goBack {
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
   background-color: rgb(183, 151, 213);
   border-bottom: 2px solid white;
-  margin-bottom: 45px;
-}
-
-.nav {
-  display: flex;
-  gap: 20px;
+  padding: 8px;
+  margin-bottom: 15px;
 }
 
 .link {
   color: white;
   font-weight: 700;
+  margin-right: 20px;
 }
 
 .active {
   color: black;
   text-decoration-line: underline;
+  background-color: rgb(183, 151, 213);
 }

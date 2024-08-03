@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import {
   Link,
   NavLink,
@@ -7,6 +7,12 @@ import {
   useParams,
 } from "react-router-dom";
 import { FetchMoviesById } from "../../services/api";
+import s from "./MovieDetailsPage.module.css";
+import clsx from "clsx";
+
+const buildLinkClass = ({ isActive }) => {
+  return clsx(s.link, isActive && s.active);
+};
 
 const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
@@ -26,7 +32,9 @@ export default function MovieDetailsPage() {
 
   return (
     <div>
-      <Link to={goBackRef.current}>Go back</Link>
+      <Link to={goBackRef.current} className={s.goBack}>
+        Go back
+      </Link>
       <div>
         {movie.poster_path && (
           <img
@@ -48,10 +56,16 @@ export default function MovieDetailsPage() {
       </div>
       <div>
         <h3>Additional information</h3>
-        <NavLink to="cast">Cast</NavLink>
-        <NavLink to="reviews">Reviews</NavLink>
+        <NavLink to="cast" className={buildLinkClass}>
+          Cast
+        </NavLink>
+        <NavLink to="reviews" className={buildLinkClass}>
+          Reviews
+        </NavLink>
       </div>
-      <Outlet />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }

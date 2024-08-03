@@ -1,0 +1,31 @@
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 26px;
+  row-gap: 30px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img {
+  width: 300px;
+  height: 450px;
+}
+
+.title {
+  width: 300px;
+  height: 60px;
+  overflow: hidden;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.001em;
+  margin-top: 10px;
+  text-align: center;
+}
